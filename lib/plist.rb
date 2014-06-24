@@ -16,6 +16,7 @@ require 'stringio'
 
 require 'plist/generator'
 require 'plist/parser'
+require 'plist/rails'
 
 module Plist
   VERSION = '3.1.6'

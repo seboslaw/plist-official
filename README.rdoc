@@ -109,6 +109,24 @@ When you attempt to serialize a +MyFancyString+ object, the +to_plist_node+ meth
 
 If for whatever reason you can't add this method, your object will be serialized with <tt>Marshal.dump</tt> instead.
 
+=== Rails integration
+
+This gem adds support for <tt>.plist</tt> format so you could use it in application controllers:
+
+  class UsersController
+    def show
+      @user = User.find params[:id]
+      respond_to do |format|
+        format.html
+        format.plist { render :plist => @user.attributes }
+      end
+    end
+  end
+
+<tt>/users/123.plist</tt> will internally call <tt>#to_plist</tt> method on attributes
+
+<tt>ActiveRecord::Base</tt> doesn't have <tt>#to_plist</tt> method so be sure to use Array or Hash instances. 
+
 == Links
 
 [Project Page]  http://plist.rubyforge.org
